@@ -21,10 +21,10 @@ class Simulation:
         feasible = []
 
         for ride in self.rides:
-            if ride.assinged:
+            if ride.assigned:
                 continue
 
-            distance_to_start = self.dist(car.x,ride.y,ride.start[0],ride.start[1])
+            distance_to_start = self.dist(car.x,car.y,ride.start[0],ride.start[1])
 
             arrival_time = car.time_available + distance_to_start
 
@@ -39,7 +39,7 @@ class Simulation:
 
     def apply_ride (self, car, ride):
 
-        distance_to_start = self.dist(car.x,ride.y,ride.start[0],ride.start[1])
+        distance_to_start = self.dist(car.x,car.y,ride.start[0],ride.start[1])
 
         arrival_time = car.time_available + distance_to_start
 
@@ -64,7 +64,7 @@ class Simulation:
         car.x = ride.end[0]
         car.y = ride.end[1]
         car.time_available = finish_time
-        car.assigned_rides.append(ride.id)
+        car.assigned_rides.append(ride.ride_id)
 
         ride.assigned = True
         self.completed_rides += 1
@@ -77,3 +77,23 @@ class Simulation:
             "finish_time": finish_time,
             "got_bonus": got_bonus,
         }
+
+    def step(self, policy):
+        any_assigned = False
+
+        for car in self.cars:
+            feasible = self.get_feasible_rides(car)
+            if not feasible:
+                continue
+
+            ride = policy.select_ride(self, car)
+            if ride is None:
+                continue
+
+            if ride.assigned:
+                continue
+
+            self.apply_ride(car, ride)
+            any_assigned = True
+
+        return any_assigned
