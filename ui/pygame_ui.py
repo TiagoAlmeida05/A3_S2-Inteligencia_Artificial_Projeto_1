@@ -15,10 +15,16 @@ class Visualizer:
         self.font = pygame.font.SysFont(None, 24)
 
     def render(self, state):
+        user_action = None
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RIGHT:
+                    user_action = "FORWARD"
+                elif event.key == pygame.K_LEFT:
+                    user_action = "BACKWARD"
 
         self.screen.fill((30, 30, 30))
 
@@ -43,9 +49,38 @@ class Visualizer:
             pygame.draw.circle(self.screen, (50, 255, 50), start_pos, 6)
             pygame.draw.circle(self.screen, (255, 50, 50), end_pos, 6)
 
+        for ride in state.get("active_rides", []):
+            end_pos = (ride["end_c"] * cell_w + cell_w/2, ride["end_r"] * cell_h + cell_h/2)
+            pygame.draw.circle(self.screen, (255, 50, 50), end_pos, 6)
+
         for car in state.get("vehicles", []):
             car_pos = (car["c"] * cell_w + cell_w/2, car["r"] * cell_h + cell_h/2)
-            pygame.draw.circle(self.screen, car["color"], car_pos, min(cell_w, cell_h)/3)
+
+            if car.get("state", "idle") != "idle":
+                target_pos = (car["target_c"] * cell_w + cell_w/2, car["target_r"] * cell_h + cell_h/2)
+
+                if car["state"] == "pickup":
+                    pygame.draw.line(self.screen, car["color"], car_pos, target_pos, 2)
+                if car["state"] == "dropoff":
+                    pygame.draw.line(self.screen, car["color"], car_pos, target_pos, 3)
+                if car["state"] == "waiting":
+                    pygame.draw.line(self.screen, car["color"], car_pos, target_pos, 3)
+                    pygame.draw.circle(self.screen, (255, 255, 255), car_pos, min(cell_w, cell_h)/6, 1)
+
+            pygame.draw.circle(self.screen, car["color"], car_pos, min(cell_w, cell_h)/10)
+
+        for msg in state.get("messages", []):
+            msg_x = msg["c"] * cell_w + cell_w/2
+            msg_y = msg["r"] * cell_h + cell_h/2 - 25
+
+            text_surface = self.font.render(msg["text"], True, msg["color"])
+            text_rect = text_surface.get_rect(center=(msg_x, msg_y))
+
+            bg_rect = text_rect.inflate(10, 10)
+            pygame.draw.rect(self.screen, (40, 40, 40), bg_rect, border_radius=4)
+            pygame.draw.rect(self.screen, msg["color"], bg_rect, 1, border_radius=4)
+
+            self.screen.blit(text_surface, text_rect)
 
         current_step = state.get("current_step", 0)
         score = state.get("score", 0)
@@ -58,3 +93,5 @@ class Visualizer:
 
         pygame.display.flip()
         self.clock.tick(60)
+
+        return user_action

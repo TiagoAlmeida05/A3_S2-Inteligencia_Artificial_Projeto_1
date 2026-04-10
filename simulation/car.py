@@ -6,6 +6,14 @@ class Car:
         self.time_available = 0
         self.assigned_rides = []
 
+        self.history = [{
+            "r": x,
+            "c": y,
+            "target_r": x,
+            "target_c": y,
+            "state": "idle"
+        }]
+
     def move_to(self, x, y, travel_time):
         self.x = x
         self.y = y

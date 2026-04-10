@@ -61,6 +61,64 @@ class Simulation:
         if got_bonus:
             self.current_score += self.bonus
 
+        curr_x, curr_y = car.x, car.y
+
+        car.history[-1]["target_r"] = ride.start[0]
+        car.history[-1]["target_c"] = ride.start[1]
+        car.history[-1]["dest_r"] = ride.end[0]
+        car.history[-1]["dest_c"] = ride.end[1]
+        car.history[-1]["state"] = "pickup" if distance_to_start > 0 else "waiting"
+
+        for _ in range(distance_to_start):
+            if curr_x != ride.start[0]:
+                curr_x += 1 if ride.start[0] > curr_x else -1
+            else:
+                curr_y += 1 if ride.start[1] > curr_y else -1
+
+            if curr_x == ride.start[0] and curr_y == ride.start[1]:
+                car.history.append({
+                    "r": curr_x,
+                    "c": curr_y, 
+                    "target_r": ride.end[0],
+                    "target_c": ride.end[1], 
+                    "state": "waiting" 
+                })
+            else:
+                car.history.append({
+                    "r": curr_x,
+                    "c": curr_y, 
+                    "target_r": ride.start[0],
+                    "target_c": ride.start[1], 
+                    "dest_r": ride.end[0],
+                    "dest_c": ride.end[1],
+                    "state": "pickup"
+                })
+
+        for _ in range(waiting_time):
+            car.history.append({
+                "r": curr_x,
+                "c": curr_y,
+                "target_r": ride.end[0],
+                "target_c": ride.end[1],
+                "state": "waiting"
+            })
+
+        for _ in range(ride.distance):
+            if curr_x != ride.end[0]:
+                curr_x += 1 if ride.end[0] > curr_x else -1
+            else:
+                curr_y += 1 if ride.end[1] > curr_y else -1
+            car.history.append({
+                "r": curr_x,
+                "c": curr_y,
+                "target_r": ride.end[0],
+                "target_c": ride.end[1],
+                "state": "dropoff"
+            })
+
+        ride.pickup_time = start_time
+        ride.finish_time = finish_time
+
         car.x = ride.end[0]
         car.y = ride.end[1]
         car.time_available = finish_time
