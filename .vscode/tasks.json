@@ -1,0 +1,19 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "run-sa-e-high-bonus",
+			"type": "shell",
+			"command": "python3",
+			"args": [
+				"cli.py",
+				"e_high_bonus.in",
+				"--solver",
+				"simulated_annealing",
+				"--random-seed",
+				"42"
+			],
+			"isBackground": false
+		}
+	]
+}

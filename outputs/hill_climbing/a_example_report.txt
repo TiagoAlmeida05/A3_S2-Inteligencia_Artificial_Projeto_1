@@ -1,0 +1,24 @@
+Hash Code Run Report
+====================
+
+Input file: inputs/a_example.in
+Solver: hill_climbing
+Score: 10
+Total completed rides: 3
+Total bonus rides: 1
+Invalid assignments: 0
+Execution time (s): 0.025073
+Output assignment file path: outputs/hill_climbing/a_example.out
+
+Number of vehicles used: 2
+Number of rides assigned: 3
+Average rides per vehicle: 1.500
+
+Parameters used:
+- max_iterations: 60
+- max_no_improve: 15
+- random_seed: 42
+- verbose: True
+- initial_temperature: 1000.0
+- cooling_rate: 0.995
+- min_temperature: 0.1

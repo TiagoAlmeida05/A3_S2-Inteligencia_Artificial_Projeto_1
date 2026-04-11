@@ -1,0 +1,24 @@
+Hash Code Run Report
+====================
+
+Input file: inputs/d_metropolis.n
+Solver: greedy
+Score: 10652236
+Total completed rides: 5119
+Total bonus rides: 1670
+Invalid assignments: 0
+Execution time (s): 128.299487
+Output assignment file path: outputs/greedy/d_metropolis.out
+
+Number of vehicles used: 400
+Number of rides assigned: 5119
+Average rides per vehicle: 12.797
+
+Parameters used:
+- max_iterations: 300
+- max_no_improve: 60
+- random_seed: None
+- verbose: False
+- initial_temperature: 1000.0
+- cooling_rate: 0.995
+- min_temperature: 0.1

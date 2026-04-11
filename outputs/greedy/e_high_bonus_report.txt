@@ -1,0 +1,21 @@
+Hash Code Run Report
+====================
+
+Input file: inputs/e_high_bonus.in
+Solver: greedy
+Score: 21493343
+Total completed rides: 10000
+Total bonus rides: 9892
+Invalid assignments: 0
+Execution time (s): 80.427918
+Output assignment file path: outputs/greedy/e_high_bonus.out
+
+Number of vehicles used: 350
+Number of rides assigned: 10000
+Average rides per vehicle: 28.571
+
+Parameters used:
+- max_iterations: 300
+- max_no_improve: 60
+- random_seed: None
+- verbose: False

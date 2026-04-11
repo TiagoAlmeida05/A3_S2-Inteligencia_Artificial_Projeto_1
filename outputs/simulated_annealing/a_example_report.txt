@@ -1,0 +1,24 @@
+Hash Code Run Report
+====================
+
+Input file: inputs/a_example.in
+Solver: simulated_annealing
+Score: 10
+Total completed rides: 3
+Total bonus rides: 1
+Invalid assignments: 0
+Execution time (s): 0.070446
+Output assignment file path: outputs/simulated_annealing/a_example.out
+
+Number of vehicles used: 2
+Number of rides assigned: 3
+Average rides per vehicle: 1.500
+
+Parameters used:
+- max_iterations: 60
+- max_no_improve: 60
+- random_seed: 42
+- verbose: True
+- initial_temperature: 120.0
+- cooling_rate: 0.98
+- min_temperature: 0.1

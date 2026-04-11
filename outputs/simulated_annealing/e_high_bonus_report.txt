@@ -1,0 +1,24 @@
+Hash Code Run Report
+====================
+
+Input file: inputs/e_high_bonus.in
+Solver: simulated_annealing
+Score: 21399945
+Total completed rides: 9984
+Total bonus rides: 9811
+Invalid assignments: 0
+Execution time (s): 97.804426
+Output assignment file path: outputs/simulated_annealing/e_high_bonus.out
+
+Number of vehicles used: 350
+Number of rides assigned: 9984
+Average rides per vehicle: 28.526
+
+Parameters used:
+- max_iterations: 300
+- max_no_improve: 60
+- random_seed: 42
+- verbose: False
+- initial_temperature: 1000.0
+- cooling_rate: 0.995
+- min_temperature: 0.1
