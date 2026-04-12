@@ -1,4 +1,3 @@
-
 import random
 from typing import List, Tuple, Optional
 
@@ -36,6 +35,7 @@ class GeneticAlgorithmSolver(Solver):
         population = []
         greedy_assignments = GreedySolver().solve(problem_instance).assignments
         population.append(self._normalize(greedy_assignments, vehicle_count, ride_count))
+        
         for _ in range(self.population_size - 1):
             assignments = self._random_solution(vehicle_count, ride_count, rng)
             population.append(self._normalize(assignments, vehicle_count, ride_count))
@@ -91,11 +91,7 @@ class GeneticAlgorithmSolver(Solver):
                 route = [r for r in parent2[v] if r not in assigned]
             assigned.update(route)
             child.append(route)
-        all_rides = set(range(ride_count))
-        missing_rides = list(all_rides - assigned)
-        for ride in missing_rides:
-            chosen_vehicle = rng.randrange(vehicle_count)
-            child[chosen_vehicle].append(ride)
+            
         return child
 
     def _mutate(self, assignments: List[List[int]], rng: random.Random) -> List[List[int]]:

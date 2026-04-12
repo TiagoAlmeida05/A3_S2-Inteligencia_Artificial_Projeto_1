@@ -7,7 +7,7 @@ Score: 10652236
 Total completed rides: 5119
 Total bonus rides: 1670
 Invalid assignments: 0
-Execution time (s): 128.299487
+Execution time (s): 137.583040
 Output assignment file path: outputs/greedy/d_metropolis.out
 
 Number of vehicles used: 400
@@ -17,7 +17,7 @@ Average rides per vehicle: 12.797
 Parameters used:
 - max_iterations: 300
 - max_no_improve: 60
-- random_seed: None
+- random_seed: 42
 - verbose: False
 - initial_temperature: 1000.0
 - cooling_rate: 0.995

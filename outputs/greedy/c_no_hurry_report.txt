@@ -7,7 +7,7 @@ Score: 15213632
 Total completed rides: 7665
 Total bonus rides: 0
 Invalid assignments: 0
-Execution time (s): 77.554641
+Execution time (s): 82.721796
 Output assignment file path: outputs/greedy/c_no_hurry.out
 
 Number of vehicles used: 81
@@ -17,7 +17,7 @@ Average rides per vehicle: 94.630
 Parameters used:
 - max_iterations: 300
 - max_no_improve: 60
-- random_seed: None
+- random_seed: 42
 - verbose: False
 - initial_temperature: 1000.0
 - cooling_rate: 0.995

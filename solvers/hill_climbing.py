@@ -12,7 +12,7 @@ class HillClimbingSolver(Solver):
         self,
         max_iterations: int = 300,
         max_no_improve: int = 60,
-        neighborhood_size: int = 40,
+        neighborhood_size: int = 10,
         restarts: int = 1,
         random_seed: Optional[int] = None,
         progress_callback: Optional[Callable[[Dict[str, float]], None]] = None,
@@ -188,7 +188,6 @@ class HillClimbingSolver(Solver):
         rng: random.Random,
     ) -> Tuple[List[List[List[int]]], int]:
         neighbors = []
-        seen = set()
         attempts = 0
         max_attempts = max(self.neighborhood_size * 6, 20)
 
@@ -207,14 +206,8 @@ class HillClimbingSolver(Solver):
             else:
                 candidate = self._neighbor_reorder(assignments, rng)
 
-            if candidate is None:
-                continue
-
-            signature = tuple(tuple(route) for route in candidate)
-            if signature in seen:
-                continue
-            seen.add(signature)
-            neighbors.append(candidate)
+            if candidate is not None:
+                neighbors.append(candidate)
 
         return neighbors, attempts
 
@@ -503,14 +496,20 @@ class HillClimbingSolver(Solver):
         normalized = [[] for _ in range(vehicle_count)]
         used = set()
 
+        # --- Phase 1: Fast filter ---
         for vehicle_id, route in enumerate(assignments[:vehicle_count]):
             for ride_id in route:
-                if ride_id in used:
-                    continue
-                if not (0 <= ride_id < ride_count):
-                    continue
-                normalized[vehicle_id].append(ride_id)
-                used.add(ride_id)
+                if ride_id not in used and 0 <= ride_id < ride_count:
+                    normalized[vehicle_id].append(ride_id)
+                    used.add(ride_id)
+
+        # --- Phase 2: Hyper-Optimized Repair ---
+        if len(used) < ride_count:
+            # This list comprehension runs vastly faster than set(range())
+            missing_rides = [r for r in range(ride_count) if r not in used]
+            
+            for i, ride_id in enumerate(missing_rides):
+                normalized[i % vehicle_count].append(ride_id)
 
         return normalized
 

@@ -7,7 +7,7 @@ Score: 176877
 Total completed rides: 294
 Total bonus rides: 288
 Invalid assignments: 0
-Execution time (s): 0.073497
+Execution time (s): 0.081728
 Output assignment file path: outputs/greedy/b_should_be_easy.out
 
 Number of vehicles used: 100
@@ -17,7 +17,7 @@ Average rides per vehicle: 2.940
 Parameters used:
 - max_iterations: 300
 - max_no_improve: 60
-- random_seed: None
+- random_seed: 42
 - verbose: False
 - initial_temperature: 1000.0
 - cooling_rate: 0.995

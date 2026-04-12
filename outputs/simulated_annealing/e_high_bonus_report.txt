@@ -7,12 +7,12 @@ Score: 21399945
 Total completed rides: 9984
 Total bonus rides: 9811
 Invalid assignments: 0
-Execution time (s): 97.804426
+Execution time (s): 250.832043
 Output assignment file path: outputs/simulated_annealing/e_high_bonus.out
 
 Number of vehicles used: 350
-Number of rides assigned: 9984
-Average rides per vehicle: 28.526
+Number of rides assigned: 10000
+Average rides per vehicle: 28.571
 
 Parameters used:
 - max_iterations: 300

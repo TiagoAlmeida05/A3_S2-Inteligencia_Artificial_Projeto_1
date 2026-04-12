@@ -16,7 +16,7 @@ class SimulatedAnnealingSolver(Solver):
         initial_temperature: float = 1000.0,
         cooling_rate: float = 0.995,
         min_temperature: float = 0.1,
-        neighborhood_size: int = 40,
+        neighborhood_size: int = 10,
         random_seed: Optional[int] = None,
         progress_callback: Optional[Callable[[Dict[str, float]], None]] = None,
     ):
