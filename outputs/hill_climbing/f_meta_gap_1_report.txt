@@ -1,0 +1,24 @@
+Hash Code Run Report
+====================
+
+Input file: inputs/f_meta_gap_1.in
+Solver: hill_climbing
+Score: 175
+Total completed rides: 11
+Total bonus rides: 9
+Invalid assignments: 0
+Execution time (s): 0.101246
+Output assignment file path: outputs/hill_climbing/f_meta_gap_1.out
+
+Number of vehicles used: 7
+Number of rides assigned: 37
+Average rides per vehicle: 5.286
+
+Parameters used:
+- max_iterations: 300
+- max_no_improve: 60
+- random_seed: 42
+- verbose: False
+- initial_temperature: 1000.0
+- cooling_rate: 0.995
+- min_temperature: 0.1

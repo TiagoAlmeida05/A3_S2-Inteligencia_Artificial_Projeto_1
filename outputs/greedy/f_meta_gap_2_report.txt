@@ -1,0 +1,24 @@
+Hash Code Run Report
+====================
+
+Input file: inputs/f_meta_gap_2.in
+Solver: greedy
+Score: 305
+Total completed rides: 19
+Total bonus rides: 9
+Invalid assignments: 0
+Execution time (s): 0.002056
+Output assignment file path: outputs/greedy/f_meta_gap_2.out
+
+Number of vehicles used: 7
+Number of rides assigned: 19
+Average rides per vehicle: 2.714
+
+Parameters used:
+- max_iterations: 300
+- max_no_improve: 60
+- random_seed: 42
+- verbose: False
+- initial_temperature: 1000.0
+- cooling_rate: 0.995
+- min_temperature: 0.1

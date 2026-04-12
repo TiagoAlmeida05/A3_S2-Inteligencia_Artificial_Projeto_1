@@ -60,7 +60,7 @@ def _build_solver(args, progress_callback=None):
             progress_callback=progress_callback,
         )
     if name == "genetic_algorithm":
-        return GeneticAlgorithmSolver()
+        return GeneticAlgorithmSolver(random_seed=args.random_seed)
     raise ValueError(f"Unknown solver: {name}")
 
 

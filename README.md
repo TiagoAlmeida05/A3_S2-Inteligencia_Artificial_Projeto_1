@@ -258,6 +258,68 @@ The algorithmic evolution in this project follows a deliberate progression:
    - Simulated Annealing was introduced as a direct improvement to search behavior by allowing controlled non-improving moves.
    - In practical terms, this broadens exploration while keeping the same solution representation and scoring logic.
 
+## Synthetic Datasets With Clear Solver Gaps
+To make solver differences easier to observe, this repository now includes three synthetic inputs designed so that metaheuristics typically beat pure greedy:
+
+- `inputs/f_meta_gap_1.in`
+- `inputs/f_meta_gap_2.in`
+- `inputs/f_meta_gap_3.in`
+
+They are generated deterministically by:
+
+- `scripts/generate_challenging_inputs.py`
+
+### Why These Datasets Behave This Way
+These synthetic instances were made to create cases where Greedy picks options that look good right now, but hurt the final result, while hill climbing, simulated annealing, and genetic algorithm can adjust and find better overall schedules.
+
+Main design patterns used in these datasets:
+
+1. **Tight feasibility windows**
+  - Many rides have relatively small slack (`latest - earliest - distance`).
+  - A small sequencing mistake early can make several later rides infeasible.
+  - Greedy commits immediately and cannot revisit those early choices.
+
+2. **Conflicting local vs global choices**
+  - Some rides look attractive because they are close or offer immediate bonus potential.
+  - Taking them can move vehicles away from better future ride clusters.
+  - Greedy's weighted score is local per decision step, so it can miss multi-step value.
+
+3. **Route-order sensitivity**
+  - Reordering a few rides within or across vehicles can unlock extra feasible rides or bonuses.
+  - Hill Climbing can exploit this with move/swap/reorder neighbors.
+  - Simulated Annealing can accept temporary score drops to escape local optima.
+  - Genetic Algorithm can recombine useful route segments from multiple individuals.
+
+4. **Mixed short and medium/long rides**
+  - Short rides may be attractive for quick bonus capture.
+  - Medium/long rides can be strategically better if sequenced well.
+  - This creates the trade-off that usually separates Greedy from the metaheuristics.
+
+Why improvements differ across solvers in the same dataset:
+
+- **Hill Climbing** improves when the useful fixes are reachable by local improvements.
+- **Simulated Annealing** improves more when escaping a local optimum is necessary.
+- **Genetic Algorithm** improves when combining partial structures from different solutions is beneficial.
+
+Because of this, the three `f_meta_gap_*` datasets tend to show a clear separation from Greedy, but they do not force a fixed ranking between Hill Climbing, SA, and GA on every run.
+
+Run the generator at any time to recreate exactly the same files:
+
+```bash
+python scripts/generate_challenging_inputs.py
+```
+
+Quick benchmark command (all four solvers on all three datasets):
+
+```bash
+for ds in f_meta_gap_1.in f_meta_gap_2.in f_meta_gap_3.in; do
+  python cli.py "$ds" --solver greedy
+  python cli.py "$ds" --solver hill_climbing --random-seed 42
+  python cli.py "$ds" --solver simulated_annealing --random-seed 42
+  python cli.py "$ds" --solver genetic_algorithm --random-seed 42
+done
+```
+
 4. **Genetic Algorithm fourth (global exploration)**
   - While Simulated Annealing helps escape local optima, it remains a single-solution trajectory; a population-based approach was the next logical step to explore multiple search regions simultaneously.
   - A full Genetic Algorithm was implemented, overcoming high complexity through careful chromosome encoding, feasibility-preserving crossover, and fitness caching for efficiency.
