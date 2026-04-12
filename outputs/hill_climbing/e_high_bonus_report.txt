@@ -7,7 +7,7 @@ Score: 21399945
 Total completed rides: 9984
 Total bonus rides: 9811
 Invalid assignments: 0
-Execution time (s): 177.828038
+Execution time (s): 115.430898
 Output assignment file path: outputs/hill_climbing/e_high_bonus.out
 
 Number of vehicles used: 350

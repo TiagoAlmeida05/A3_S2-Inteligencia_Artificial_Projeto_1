@@ -496,16 +496,13 @@ class HillClimbingSolver(Solver):
         normalized = [[] for _ in range(vehicle_count)]
         used = set()
 
-        # --- Phase 1: Fast filter ---
         for vehicle_id, route in enumerate(assignments[:vehicle_count]):
             for ride_id in route:
                 if ride_id not in used and 0 <= ride_id < ride_count:
                     normalized[vehicle_id].append(ride_id)
                     used.add(ride_id)
 
-        # --- Phase 2: Hyper-Optimized Repair ---
         if len(used) < ride_count:
-            # This list comprehension runs vastly faster than set(range())
             missing_rides = [r for r in range(ride_count) if r not in used]
             
             for i, ride_id in enumerate(missing_rides):

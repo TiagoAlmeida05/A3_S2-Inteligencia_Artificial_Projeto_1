@@ -7,12 +7,12 @@ Score: 15213632
 Total completed rides: 7665
 Total bonus rides: 0
 Invalid assignments: 0
-Execution time (s): 128.280186
+Execution time (s): 136.385996
 Output assignment file path: outputs/genetic_algorithm/c_no_hurry.out
 
 Number of vehicles used: 81
-Number of rides assigned: 7665
-Average rides per vehicle: 94.630
+Number of rides assigned: 10000
+Average rides per vehicle: 123.457
 
 Parameters used:
 - max_iterations: 300

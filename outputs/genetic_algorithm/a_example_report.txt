@@ -7,7 +7,7 @@ Score: 10
 Total completed rides: 3
 Total bonus rides: 1
 Invalid assignments: 0
-Execution time (s): 0.035331
+Execution time (s): 0.051193
 Output assignment file path: outputs/genetic_algorithm/a_example.out
 
 Number of vehicles used: 2

@@ -3,11 +3,11 @@ Hash Code Run Report
 
 Input file: inputs/c_no_hurry.in
 Solver: hill_climbing
-Score: 15214240
-Total completed rides: 7666
+Score: 15214002
+Total completed rides: 7665
 Total bonus rides: 0
 Invalid assignments: 0
-Execution time (s): 154.888255
+Execution time (s): 107.571030
 Output assignment file path: outputs/hill_climbing/c_no_hurry.out
 
 Number of vehicles used: 81

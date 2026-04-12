@@ -7,7 +7,7 @@ Score: 10
 Total completed rides: 3
 Total bonus rides: 1
 Invalid assignments: 0
-Execution time (s): 0.044267
+Execution time (s): 0.011511
 Output assignment file path: outputs/hill_climbing/a_example.out
 
 Number of vehicles used: 2

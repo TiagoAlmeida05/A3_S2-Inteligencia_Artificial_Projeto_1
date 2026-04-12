@@ -7,12 +7,12 @@ Score: 21399945
 Total completed rides: 9984
 Total bonus rides: 9811
 Invalid assignments: 0
-Execution time (s): 245.701250
+Execution time (s): 156.224912
 Output assignment file path: outputs/genetic_algorithm/e_high_bonus.out
 
 Number of vehicles used: 350
-Number of rides assigned: 9984
-Average rides per vehicle: 28.526
+Number of rides assigned: 10000
+Average rides per vehicle: 28.571
 
 Parameters used:
 - max_iterations: 300

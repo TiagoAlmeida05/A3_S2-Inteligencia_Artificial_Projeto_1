@@ -7,7 +7,7 @@ Score: 176877
 Total completed rides: 294
 Total bonus rides: 288
 Invalid assignments: 0
-Execution time (s): 1.494286
+Execution time (s): 0.636241
 Output assignment file path: outputs/hill_climbing/b_should_be_easy.out
 
 Number of vehicles used: 100
