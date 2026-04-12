@@ -1,14 +1,14 @@
 Hash Code Run Report
 ====================
 
-Input file: inputs/d_metropolis.n
+Input file: inputs\d_metropolis.n
 Solver: genetic_algorithm
-Score: 10657200
-Total completed rides: 5129
-Total bonus rides: 1675
+Score: 10653737
+Total completed rides: 5121
+Total bonus rides: 1671
 Invalid assignments: 0
-Execution time (s): 207.289397
-Output assignment file path: outputs/genetic_algorithm/d_metropolis.out
+Execution time (s): 193.604812
+Output assignment file path: outputs\genetic_algorithm\d_metropolis.out
 
 Number of vehicles used: 400
 Number of rides assigned: 10000

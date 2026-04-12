@@ -1,14 +1,14 @@
 Hash Code Run Report
 ====================
 
-Input file: inputs/e_high_bonus.in
+Input file: inputs\e_high_bonus.in
 Solver: genetic_algorithm
 Score: 21399945
 Total completed rides: 9984
 Total bonus rides: 9811
 Invalid assignments: 0
-Execution time (s): 156.224912
-Output assignment file path: outputs/genetic_algorithm/e_high_bonus.out
+Execution time (s): 147.712250
+Output assignment file path: outputs\genetic_algorithm\e_high_bonus.out
 
 Number of vehicles used: 350
 Number of rides assigned: 10000
@@ -17,7 +17,7 @@ Average rides per vehicle: 28.571
 Parameters used:
 - max_iterations: 300
 - max_no_improve: 60
-- random_seed: 42
+- random_seed: None
 - verbose: False
 - initial_temperature: 1000.0
 - cooling_rate: 0.995

@@ -1,14 +1,14 @@
 Hash Code Run Report
 ====================
 
-Input file: inputs/d_metropolis.n
+Input file: inputs\d_metropolis.n
 Solver: simulated_annealing
 Score: 10656206
 Total completed rides: 5128
 Total bonus rides: 1674
 Invalid assignments: 0
-Execution time (s): 211.581415
-Output assignment file path: outputs/simulated_annealing/d_metropolis.out
+Execution time (s): 203.677443
+Output assignment file path: outputs\simulated_annealing\d_metropolis.out
 
 Number of vehicles used: 400
 Number of rides assigned: 10000

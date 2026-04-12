@@ -1,4 +1,4 @@
-## Project Overview
+﻿## Project Overview
 This repository contains a Python implementation of the **Google Hash Code 2018 qualification problem**, commonly known as **Self-Driving Rides**.
 
 The project goal is to assign rides to a fleet of vehicles in a way that maximizes total score under time and feasibility constraints. Instead of relying on a single strategy, the codebase supports **multiple solving approaches** and allows direct comparison between them.
@@ -258,16 +258,7 @@ The algorithmic evolution in this project follows a deliberate progression:
    - Simulated Annealing was introduced as a direct improvement to search behavior by allowing controlled non-improving moves.
    - In practical terms, this broadens exploration while keeping the same solution representation and scoring logic.
 
-## Synthetic Datasets With Clear Solver Gaps
-To make solver differences easier to observe, this repository now includes three synthetic inputs designed so that metaheuristics typically beat pure greedy:
-
-- `inputs/f_meta_gap_1.in`
-- `inputs/f_meta_gap_2.in`
-- `inputs/f_meta_gap_3.in`
-
-They are generated deterministically by:
-
-- `scripts/generate_challenging_inputs.py`
+## Input and Output Organization
 
 ### Why These Datasets Behave This Way
 These synthetic instances were made to create cases where Greedy picks options that look good right now, but hurt the final result, while hill climbing, simulated annealing, and genetic algorithm can adjust and find better overall schedules.
@@ -407,20 +398,6 @@ python3 cli.py a_example.in --solver simulated_annealing --verbose
 After each CLI run, expect:
 - one `.out` assignment file inside the selected solver folder in `outputs/`;
 - one `*_report.txt` report file in the same folder.
-
-## Current Limitations
-- `genetic_algorithm` is not implemented yet (placeholder only).
-- Search quality for Hill Climbing and Simulated Annealing can depend strongly on parameter settings.
-- UI simulation path (`main.py`, `simulation/`, `Policies/`) and CLI optimization path (`cli.py`, `solvers/`) are partially separate workflows.
-- Large instances may require richer neighborhood operators and additional optimization to consistently improve over baseline heuristics.
-
-## Future Improvements
-- Design stronger neighborhood operators (especially for large datasets).
-- Perform systematic parameter tuning experiments for Hill Climbing and Simulated Annealing.
-- Add experiment automation scripts to run and compare solver configurations across datasets.
-- Implement a full Genetic Algorithm with feasibility-aware crossover and mutation.
-- Improve performance (profiling, caching, and incremental scoring ideas).
-- Extend reporting with benchmark tables/plots and reproducibility metadata.
 
 ## Credits and Context
 This project is based on the **Google Hash Code 2018 Qualification Round** problem: **Self-Driving Rides**.

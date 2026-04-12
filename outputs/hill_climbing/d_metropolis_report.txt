@@ -1,14 +1,14 @@
 Hash Code Run Report
 ====================
 
-Input file: inputs/d_metropolis.n
+Input file: inputs\d_metropolis.n
 Solver: hill_climbing
 Score: 10655578
 Total completed rides: 5123
 Total bonus rides: 1671
 Invalid assignments: 0
-Execution time (s): 167.288359
-Output assignment file path: outputs/hill_climbing/d_metropolis.out
+Execution time (s): 169.609511
+Output assignment file path: outputs\hill_climbing\d_metropolis.out
 
 Number of vehicles used: 400
 Number of rides assigned: 10000

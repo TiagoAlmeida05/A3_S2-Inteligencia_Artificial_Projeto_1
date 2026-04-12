@@ -2,8 +2,53 @@ from parser import read_problem_instance
 from simulation.car import Car
 from simulation.ride import Ride
 from simulation.sim import Simulation
-from Policies.greedy_policy import GreedyPolicy
+from solvers.genetic_algorithm import GeneticAlgorithmSolver
+from solvers.greedy_solver import GreedySolver
+from solvers.hill_climbing import HillClimbingSolver
+from solvers.simulated_annealing import SimulatedAnnealingSolver
 from ui.pygame_ui import Visualizer
+
+
+SOLVER_CHOICES = {
+    "1": "greedy",
+    "2": "hill_climbing",
+    "3": "simulated_annealing",
+    "4": "genetic_algorithm",
+}
+
+
+def _select_solver() -> tuple[str, object]:
+    solver_names = [
+        "greedy",
+        "hill_climbing",
+        "simulated_annealing",
+        "genetic_algorithm",
+    ]
+    prompt = (
+        "Choose a solver:\n"
+        "  1) greedy\n"
+        "  2) hill_climbing\n"
+        "  3) simulated_annealing\n"
+        "  4) genetic_algorithm\n"
+        "Enter choice (number or name, default greedy): "
+    )
+
+    while True:
+        choice = input(prompt).strip().lower()
+        if not choice:
+            choice = "greedy"
+        if choice in SOLVER_CHOICES:
+            choice = SOLVER_CHOICES[choice]
+        if choice in solver_names:
+            if choice == "greedy":
+                return choice, GreedySolver()
+            if choice == "hill_climbing":
+                return choice, HillClimbingSolver()
+            if choice == "simulated_annealing":
+                return choice, SimulatedAnnealingSolver()
+            if choice == "genetic_algorithm":
+                return choice, GeneticAlgorithmSolver()
+        print("Invalid solver selection. Please choose a valid option.\n")
 
 
 def classify_ride(ride, simulation_time, total_time):
@@ -167,13 +212,21 @@ def main():
         except FileNotFoundError:
             print(f"Error: Could not find '{filename}'. Try again.\n")
 
-    sim = build_simulation(problem)
+    solver_name, solver = _select_solver()
+    print(f"Solving with {solver_name} solver...")
+    solution = solver.solve(problem)
+    print("Solution generated. Building simulation from solver assignments...")
 
-    policy = GreedyPolicy()
-    print("Running AI Logic...")
-    while sim.step(policy):
-        pass
-    print(f"Simulation Finished! Final Score: {sim.current_score}")
+    sim = build_simulation(problem)
+    for car_id, assigned_ride_ids in enumerate(solution.assignments):
+        if car_id >= len(sim.cars):
+            break
+        car = sim.cars[car_id]
+        for ride_id in assigned_ride_ids:
+            ride = sim.rides[ride_id]
+            sim.apply_ride(car, ride)
+
+    print(f"Simulation built. Final Score: {sim.current_score}")
 
     print("Starting visualizer...")
     ui = Visualizer(width=1200, height=820)

@@ -1,14 +1,14 @@
 Hash Code Run Report
 ====================
 
-Input file: inputs/b_should_be_easy.in
+Input file: inputs\b_should_be_easy.in
 Solver: hill_climbing
 Score: 176877
 Total completed rides: 294
 Total bonus rides: 288
 Invalid assignments: 0
-Execution time (s): 0.636241
-Output assignment file path: outputs/hill_climbing/b_should_be_easy.out
+Execution time (s): 0.509596
+Output assignment file path: outputs\hill_climbing\b_should_be_easy.out
 
 Number of vehicles used: 100
 Number of rides assigned: 300
@@ -17,7 +17,7 @@ Average rides per vehicle: 3.000
 Parameters used:
 - max_iterations: 300
 - max_no_improve: 60
-- random_seed: 42
+- random_seed: None
 - verbose: False
 - initial_temperature: 1000.0
 - cooling_rate: 0.995

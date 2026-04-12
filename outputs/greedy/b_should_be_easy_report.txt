@@ -1,14 +1,14 @@
 Hash Code Run Report
 ====================
 
-Input file: inputs/b_should_be_easy.in
+Input file: inputs\b_should_be_easy.in
 Solver: greedy
 Score: 176877
 Total completed rides: 294
 Total bonus rides: 288
 Invalid assignments: 0
-Execution time (s): 0.125286
-Output assignment file path: outputs/greedy/b_should_be_easy.out
+Execution time (s): 0.086709
+Output assignment file path: outputs\greedy\b_should_be_easy.out
 
 Number of vehicles used: 100
 Number of rides assigned: 294

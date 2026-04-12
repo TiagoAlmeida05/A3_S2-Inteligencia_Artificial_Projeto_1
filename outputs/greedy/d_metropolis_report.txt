@@ -1,14 +1,14 @@
 Hash Code Run Report
 ====================
 
-Input file: inputs/d_metropolis.n
+Input file: inputs\d_metropolis.n
 Solver: greedy
 Score: 10652236
 Total completed rides: 5119
 Total bonus rides: 1670
 Invalid assignments: 0
-Execution time (s): 140.835545
-Output assignment file path: outputs/greedy/d_metropolis.out
+Execution time (s): 143.654602
+Output assignment file path: outputs\greedy\d_metropolis.out
 
 Number of vehicles used: 400
 Number of rides assigned: 5119
@@ -22,3 +22,6 @@ Parameters used:
 - initial_temperature: 1000.0
 - cooling_rate: 0.995
 - min_temperature: 0.1
+
+F: Meta Gap
+(Constrained Fleet, Greedy Trap)
