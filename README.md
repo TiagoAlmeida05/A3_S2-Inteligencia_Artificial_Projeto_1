@@ -203,10 +203,43 @@ This section describes the implemented methods as they are used in this project,
 - Sensitive to parameter tuning (`initial_temperature`, `cooling_rate`, iteration budget).
 - Can underperform if temperature schedule is not well calibrated.
 
-### 4) Genetic Algorithm (Placeholder)
-- `solvers/genetic_algorithm.py` currently contains a **placeholder solver**.
-- It is included for architecture completeness and future experimentation.
-- It should be treated as **future work**, not an implemented optimization baseline.
+
+
+### 4) Genetic Algorithm
+**What it is**
+- A fully implemented population-based metaheuristic inspired by natural selection, evolving a set of candidate solutions (assignments) over generations.
+
+**How it works in this project**
+- Implemented in `solvers/genetic_algorithm.py`.
+- Each individual (chromosome) represents a complete assignment of rides to vehicles.
+- The algorithm maintains a population of solutions, initialized with one Greedy solution and the rest random valid assignments.
+- In each generation:
+  - Solutions are evaluated using the same scoring pipeline as other solvers, with fitness values cached for efficiency (no redundant evaluations).
+  - The best solutions (elitism) are preserved.
+  - New solutions are created by selecting parents (tournament selection), performing crossover (combining vehicle routes from both parents), and applying mutation (random moves, swaps, or reorders, reusing Hill Climbing logic).
+  - The crossover operator is carefully designed to always assign all rides: after inheriting routes from parents, any missing rides are explicitly assigned to random vehicles, ensuring no ride is ever lost.
+  - All solutions are normalized to ensure feasibility (no duplicate or out-of-range rides).
+- After a fixed number of generations, the best solution found is returned.
+
+**Why it was chosen**
+- Genetic algorithms can explore a broader solution space and sometimes escape local optima that trap local search methods.
+- They are useful for large, complex instances where diverse solution strategies may yield better results.
+
+**What it improves over other methods**
+- Can combine features of multiple good solutions, not just make local changes.
+- May find better solutions on hard instances, given enough time and tuning.
+
+**Strengths**
+- Flexible and robust to local optima.
+- Leverages and combines existing move logic for effective mutation.
+- Can be tuned for solution quality vs. runtime.
+- Always produces valid solutions with all rides assigned.
+- Efficient: caches fitness values to avoid redundant scoring.
+
+**Limitations**
+- Computationally expensive: slower than greedy or local search for large populations/generations.
+- Solution quality depends on parameter tuning (population size, mutation/crossover rates, generations).
+- No guarantee of outperforming tuned local search on all instances.
 
 ## Algorithm Progression and Design Rationale
 The algorithmic evolution in this project follows a deliberate progression:
@@ -225,9 +258,10 @@ The algorithmic evolution in this project follows a deliberate progression:
    - Simulated Annealing was introduced as a direct improvement to search behavior by allowing controlled non-improving moves.
    - In practical terms, this broadens exploration while keeping the same solution representation and scoring logic.
 
-4. **Genetic Algorithm deferred (higher implementation complexity)**
-   - Genetic approaches require robust chromosome encoding, crossover/mutation design, population management, and feasibility-preserving operators.
-   - This is significantly more complex than single-solution local search and was deferred to avoid unstable or misleading partial implementations.
+4. **Genetic Algorithm fourth (global exploration)**
+  - While Simulated Annealing helps escape local optima, it remains a single-solution trajectory; a population-based approach was the next logical step to explore multiple search regions simultaneously.
+  - A full Genetic Algorithm was implemented, overcoming high complexity through careful chromosome encoding, feasibility-preserving crossover, and fitness caching for efficiency.
+  - It acts as a "memetic" algorithm by reusing the existing Hill Climbing operators for its mutation step, seamlessly combining global exploration with local refinement.
 
 Overall, each step increases search sophistication:
 - Greedy: constructive feasibility and speed;
